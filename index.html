@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A demonstration learning dashboard that adapts recommendations and presentation using an on-device preference-learning model.">
+  <title>StudyFlow | Adaptive Learning Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">S</span><span>StudyFlow</span></div>
+    <div class="top-actions">
+      <span id="learning-status" class="status" aria-live="polite">Learning your preferences</span>
+      <button id="reset-model" class="button button-quiet" type="button">Reset learning</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">PERSONALIZED STUDY SPACE</p>
+        <h1>Your learning, <span class="accent">your rhythm.</span></h1>
+        <p class="intro">Choose a lesson, share quick feedback, and StudyFlow will adjust future recommendations and the way content is presented.</p>
+      </div>
+      <aside class="recommendation" aria-live="polite">
+        <span class="recommend-label">CURRENT RECOMMENDATION</span>
+        <strong id="recommend-title">Start with a topic</strong>
+        <span id="recommend-detail">Your learning profile will develop as you interact.</span>
+      </aside>
+    </section>
+
+    <section class="control-panel" aria-label="Display preferences">
+      <div>
+        <h2>Interface preferences</h2>
+        <p class="muted">These controls let you override automatic adaptation at any time.</p>
+      </div>
+      <div class="controls">
+        <label class="control-label">Display density
+          <select id="density">
+            <option value="auto">Automatic</option>
+            <option value="comfortable">Comfortable</option>
+            <option value="compact">Compact</option>
+          </select>
+        </label>
+        <label class="switch-label"><input type="checkbox" id="contrast"> <span>High contrast</span></label>
+        <label class="switch-label"><input type="checkbox" id="larger-text"> <span>Larger text</span></label>
+      </div>
+    </section>
+
+    <section class="learning-grid">
+      <div class="lessons-area">
+        <div class="section-heading">
+          <div><p class="eyebrow">YOUR LIBRARY</p><h2>Explore learning paths</h2></div>
+          <span id="sort-label" class="muted">Recommended order</span>
+        </div>
+        <div id="lesson-list" class="lesson-list"></div>
+      </div>
+      <aside class="profile-card">
+        <p class="eyebrow">LIVE USER MODEL</p>
+        <h2>What StudyFlow is learning</h2>
+        <p class="muted">The local model estimates topic interest from lesson selections and preferred difficulty from your feedback.</p>
+        <div id="profile-bars" class="profile-bars"></div>
+        <div class="profile-footer">
+          <span id="interaction-count">0 interactions recorded</span>
+          <span class="privacy-note">Stored on this device only</span>
+        </div>
+      </aside>
+    </section>
+
+    <section id="lesson-view" class="lesson-view" hidden>
+      <div class="lesson-view-head">
+        <div><p class="eyebrow">ACTIVE LESSON</p><h2 id="active-title">Lesson</h2></div>
+        <button id="close-lesson" class="button button-quiet" type="button">Close</button>
+      </div>
+      <p id="active-description"></p>
+      <div class="lesson-content" id="lesson-content"></div>
+      <div class="feedback">
+        <div><strong>How did this lesson feel?</strong><p class="muted">Your answer updates the recommendation model.</p></div>
+        <div class="feedback-buttons">
+          <button class="button feedback-button" data-feedback="too_easy" type="button">Too easy</button>
+          <button class="button feedback-button" data-feedback="right" type="button">Just right</button>
+          <button class="button feedback-button" data-feedback="too_hard" type="button">Too difficult</button>
+        </div>
+      </div>
+    </section>
+    <footer><span>StudyFlow demonstration • Adaptive behavior runs locally in your browser.</span><span>Demo data only — no account or server required.</span></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
